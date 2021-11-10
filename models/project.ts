@@ -45,4 +45,4 @@ const ProjectSchema = new Schema<Proyecto>({
 
 const ProjectModel = model('Project', ProjectSchema, "Proyectos_Universidad");
 
-export default ProjectModel;
+export { ProjectModel };

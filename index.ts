@@ -1,8 +1,8 @@
 import conectarBD from "./db/db";
 import { UserModel } from "./models/users";
 import { Enum_Rol } from "./models/enum";
-import ProjectModel from "./models/project";
 import { ObjectId } from "mongoose";
+import { ProjectModel } from "./models/project";
 
 const main = async () => {
     await conectarBD();
@@ -27,7 +27,7 @@ const main = async () => {
     //     correo: "prueba4@gmail.com",
     //     rol: Enum_Rol.lider,
     // }).then((u) => {
-    //     console.log("Usuario creado exitósamente: ", u);
+    //     console.log("Usuario creado exitosamente: ", u);
     // }).catch((e) => {
     //     console.error("Error creando el usuario: ", e);
     // });
@@ -44,6 +44,15 @@ const main = async () => {
     //     console.error("Error obteniendo los usuarios ", e);
     // });
 
+    // Consultar un único Usuario
+    
+    // await UserModel.findOne()
+    //   .then((u) => {
+    //     console.log("Usuario encontrado exitosamente: ", u);
+    // }).catch((e) => {
+    //     console.error("Error obteniendo el usuario consultado ", e);
+    // });
+
     // Editar un Usuario
     
     // await UserModel.findOneAndUpdate(
@@ -54,7 +63,7 @@ const main = async () => {
     //     }
     // )
     //     .then((u) => {
-    //     console.log("Usuario actualizado exitósamente: ", u);
+    //     console.log("Usuario actualizado exitosamente: ", u);
     // })
     //     .catch((e) => {
     //     console.error("Error actualizando el usuario: ", e);
@@ -62,15 +71,11 @@ const main = async () => {
     
     // // Eliminar un Usuario
     
-    // await UserModel.findOneAndUpdate(
-    //     { nombre: "Paquita" },
-    //     {
-    //         correo: "Paquita 2",
-    //         identificacion: "84973224r2"
-    //     }
+    // await UserModel.findOneAndDelete(
+    //     { nombre: "Paquita" }
     // )
     //     .then((u) => {
-    //     console.log("Usuario eliminado exitósamente: ", u);
+    //     console.log("Usuario eliminado exitosamente: ", u);
     // })
     //     .catch((e) => {
     //     console.error("Error eliminando el usuario: ", e);
@@ -80,10 +85,29 @@ const main = async () => {
 
     ProjectModel.create({
         nombre: "Proyecto 1",
-        presupuesto: "10.000'000.000",
+        presupuesto: 10000000000,
         fechaInicial: Date.now(),
         fechaFinal: new Date("2022/11/10"),
-    })
+    },{
+        nombre: "Proyecto 2",
+        presupuesto: 8000000000,
+        fechaInicial: Date.now(),
+        fechaFinal: new Date("2023/05/10"),
+    },{
+        nombre: "Proyecto 3",
+        presupuesto: 3850,
+        fechaInicial: Date.now(),
+        fechaFinal: new Date("2022/12/15"),
+    },{
+        nombre: "Proyecto 4",
+        presupuesto: 6750000000,
+        fechaInicial: Date.now(),
+        fechaFinal: new Date("2022/11/10"),
+    }).then((u) => {
+        console.log("Proyecto creado exitosamente: ", u);
+    }).catch((e) => {
+        console.error("Error creando el Proyecto: ", e);
+    });    
 };
 
 main();
