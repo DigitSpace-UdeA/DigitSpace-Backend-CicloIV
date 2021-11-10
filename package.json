@@ -5,6 +5,9 @@
   "repository": "https://github.com/DigitSpace-UdeA/DigitSpace-Backend-CicloIV.git",
   "author": "David <davico.gonzalez@live.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^6.0.12",
