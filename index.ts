@@ -1,34 +1,36 @@
 import conectarBD from "./db/db";
 import { UserModel } from "./models/users";
 import { Enum_Rol } from "./models/enum";
+import ProjectModel from "./models/project";
+import { ObjectId } from "mongoose";
 
 const main = async () => {
     await conectarBD();
 
     // Crear un Usuario
-    await UserModel.create({
-        nombre: "David Andrés",
-        apellido: "González Medina",
-        identificacion: "1029384756",
-        correo: "prueba2@gmail.com",
-        rol: Enum_Rol.estudiante,
-    }, {
-        nombre: "Daniel Alexander",
-        apellido: "Flórez Orrego",
-        identificacion: "5647839210",
-        correo: "prueba2@gmail.com",
-        rol: Enum_Rol.estudiante,
-    }, {
-        nombre: "Katerin",
-        apellido: "Barrera Ortega",
-        identificacion: "0192837465",
-        correo: "prueba4@gmail.com",
-        rol: Enum_Rol.lider,
-    }).then((u) => {
-        console.log("Usuario creado exitósamente: ", u);
-    }).catch((e) => {
-        console.error("Error creando el usuario: ", e);
-    });
+    // await UserModel.create({
+    //     nombre: "David Andrés",
+    //     apellido: "González Medina",
+    //     identificacion: "1029384756",
+    //     correo: "prueba2@gmail.com",
+    //     rol: Enum_Rol.estudiante,
+    // }, {
+    //     nombre: "Daniel Alexander",
+    //     apellido: "Flórez Orrego",
+    //     identificacion: "5647839210",
+    //     correo: "prueba2@gmail.com",
+    //     rol: Enum_Rol.estudiante,
+    // }, {
+    //     nombre: "Katerin",
+    //     apellido: "Barrera Ortega",
+    //     identificacion: "0192837465",
+    //     correo: "prueba4@gmail.com",
+    //     rol: Enum_Rol.lider,
+    // }).then((u) => {
+    //     console.log("Usuario creado exitósamente: ", u);
+    // }).catch((e) => {
+    //     console.error("Error creando el usuario: ", e);
+    // });
 
     // Para comentar masívamente Ctrl K y Ctrl + C
     // Para quitar el comentario es Ctrl k + Ctrl u
@@ -74,6 +76,14 @@ const main = async () => {
     //     console.error("Error eliminando el usuario: ", e);
     // });
 
+    // Crear un Proyecto
+
+    ProjectModel.create({
+        nombre: "Proyecto 1",
+        presupuesto: "10.000'000.000",
+        fechaInicial: Date.now(),
+        fechaFinal: new Date("2022/11/10"),
+    })
 };
 
 main();
