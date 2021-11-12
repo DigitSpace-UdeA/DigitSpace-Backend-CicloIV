@@ -19,7 +19,7 @@ const userSchema = new Schema<User>({
             validator: (email) => {
                 return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
             },
-            message: "El correo está mal.",
+            message: "El formato del correo no corresponde a lo habitual.",
         },
     },
     identificacion: {
@@ -42,7 +42,6 @@ const userSchema = new Schema<User>({
     },
     estado: {
         type: String,
-        required: true,
         enum: Enum_Estado_Usuario,
         default: Enum_Estado_Usuario.pendiente,
     },

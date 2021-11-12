@@ -1,8 +1,9 @@
 import conectarBD from "./db/db";
 import { UserModel } from "./models/users";
-import { Enum_Rol } from "./models/enum";
+import { Enum_Estado_Usuario, Enum_Rol, Enum_Tipo_Objetivo } from "./models/enum";
 import { ObjectId } from "mongoose";
 import { ProjectModel } from "./models/project";
+import { ObjectiveModel } from "./models/objetivo";
 
 const main = async () => {
     await conectarBD();
@@ -83,31 +84,58 @@ const main = async () => {
 
     // Crear un Proyecto
 
-    ProjectModel.create({
-        nombre: "Proyecto 1",
-        presupuesto: 10000000000,
-        fechaInicial: Date.now(),
-        fechaFinal: new Date("2022/11/10"),
-    },{
-        nombre: "Proyecto 2",
-        presupuesto: 8000000000,
-        fechaInicial: Date.now(),
-        fechaFinal: new Date("2023/05/10"),
-    },{
-        nombre: "Proyecto 3",
-        presupuesto: 3850,
-        fechaInicial: Date.now(),
-        fechaFinal: new Date("2022/12/15"),
-    },{
-        nombre: "Proyecto 4",
-        presupuesto: 6750000000,
-        fechaInicial: Date.now(),
-        fechaFinal: new Date("2022/11/10"),
-    }).then((u) => {
-        console.log("Proyecto creado exitosamente: ", u);
-    }).catch((e) => {
-        console.error("Error creando el Proyecto: ", e);
-    });    
+    // ProjectModel.create({
+    //     nombre: "Proyecto con Objetivos 4",
+    //     presupuesto: 123456789000,
+    //     fechaInicial: Date.now(),
+    //     fechaFinal: new Date("2023/12/31"),
+    //     lider: "618c058eca0e5a1c9fa2c393",
+    //     objetivos: ["618c842abee077f7a75d365b", "618c83da756f3e871fe21f2f"],
+    // }).then((u) => {
+    //     console.log("Proyecto creado exitosamente: ", u);
+    // })
+    //     .catch((e) => {
+    //         console.error("Error creando el proyecto: ", e);
+    // });
+
+    // const proyecto = await ProjectModel.find({ nombre: "Proyecto con Objetivos 4" }).populate("lider").populate("objetivos");
+    // console.log("El proyecto es: ", JSON.stringify(proyecto));
+
+    // Crear Objetivos
+
+    // const objet = await ObjectiveModel.create({
+    //     descripcion: "Objetivo Específico.",
+    //     tipo: Enum_Tipo_Objetivo.especifico,
+    // });
+
+    const crearProyectoConObjetivos = async () => {
+        const usuarioInicial = await UserModel.create({
+            nombre: 'David',
+            apellido: 'González',
+            correo: 'general@ur.com',
+            identificacion: '0192837748',
+            rol: Enum_Rol.administrador,
+            estado: Enum_Estado_Usuario.autorizado,
+        });
+
+    const proyectoCreado = await ProjectModel.create({
+        nombre: 'Proyecto Mision TIC',
+        fechaInicio: new Date('2021/12/24'),
+        fechaFin: new Date('2022/12/24'),
+        presupuesto: 120000,
+        lider: usuarioInicial._id,
+        objetivos: [
+            { descripcion: 'Se crea el objetivo general.', tipo: Enum_Tipo_Objetivo.general },
+            { descripcion: 'Se crea el objetivo específico 1.', tipo: Enum_Tipo_Objetivo.especifico },
+            { descripcion: 'Se crea el objetivo específico 2.', tipo: Enum_Tipo_Objetivo.especifico },
+        ],
+    });
+};
+
+    const consultaProyectoConObjetivos = async () => {
+        const proyectoCreado = await ProjectModel.find({ id: '618d5b22e4e2a99bddab693e' });
+        console.log('proyecto', proyectoCreado);
+    };
 };
 
 main();
