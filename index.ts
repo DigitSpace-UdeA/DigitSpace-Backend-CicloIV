@@ -25,5 +25,5 @@ app.listen({ port: process.env.PORT }, async () => {
 
     server.applyMiddleware({ app });
 
-    console.log("Seervidor funcional con Graphql!!!");
+    console.log("Servidor funcional con Graphql!!!");
 })
