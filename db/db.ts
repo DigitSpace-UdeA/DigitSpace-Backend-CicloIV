@@ -1,5 +1,6 @@
 import { connect } from 'mongoose';
 
+// Variable para esconder la BD
 const conectarBD = async () => {
   return await connect(
       process.env.DATABASE_URL
