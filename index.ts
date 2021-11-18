@@ -10,23 +10,11 @@ const main = async () => {
 
     // Crear un Usuario
     // await UserModel.create({
-    //     nombre: "David Andrés",
-    //     apellido: "González Medina",
-    //     identificacion: "1029384756",
+    //     nombre: "Ejemplo 1",
+    //     apellido: "Ejemplo 1",
+    //     identificacion: "1627384950",
     //     correo: "prueba2@gmail.com",
     //     rol: Enum_Rol.estudiante,
-    // }, {
-    //     nombre: "Daniel Alexander",
-    //     apellido: "Flórez Orrego",
-    //     identificacion: "5647839210",
-    //     correo: "prueba2@gmail.com",
-    //     rol: Enum_Rol.estudiante,
-    // }, {
-    //     nombre: "Katerin",
-    //     apellido: "Barrera Ortega",
-    //     identificacion: "0192837465",
-    //     correo: "prueba4@gmail.com",
-    //     rol: Enum_Rol.lider,
     // }).then((u) => {
     //     console.log("Usuario creado exitosamente: ", u);
     // }).catch((e) => {
@@ -57,10 +45,11 @@ const main = async () => {
     // Editar un Usuario
     
     // await UserModel.findOneAndUpdate(
-    //     { nombre: "Paquita" },
+    //     { nombre: "Ejemplo 1" },
     //     {
-    //         correo: "Paquita 2",
-    //         identificacion: "84973224r2"
+    //         correo: "ejemplo1@prueba.com",
+    //         identificacion: "947573f4",
+    //         estado: Enum_Estado_Usuario.autorizado
     //     }
     // )
     //     .then((u) => {
@@ -108,34 +97,34 @@ const main = async () => {
     //     tipo: Enum_Tipo_Objetivo.especifico,
     // });
 
-    const crearProyectoConObjetivos = async () => {
-        const usuarioInicial = await UserModel.create({
-            nombre: 'David',
-            apellido: 'González',
-            correo: 'general@ur.com',
-            identificacion: '0192837748',
-            rol: Enum_Rol.administrador,
-            estado: Enum_Estado_Usuario.autorizado,
-        });
+    // const crearProyectoConObjetivos = async () => {
+    //     const usuarioInicial = await UserModel.create({
+    //         nombre: 'David',
+    //         apellido: 'González',
+    //         correo: 'general@ur.com',
+    //         identificacion: '0192837748',
+    //         rol: Enum_Rol.administrador,
+    //         estado: Enum_Estado_Usuario.autorizado,
+    //     });
 
-    const proyectoCreado = await ProjectModel.create({
-        nombre: 'Proyecto Mision TIC',
-        fechaInicio: new Date('2021/12/24'),
-        fechaFin: new Date('2022/12/24'),
-        presupuesto: 120000,
-        lider: usuarioInicial._id,
-        objetivos: [
-            { descripcion: 'Se crea el objetivo general.', tipo: Enum_Tipo_Objetivo.general },
-            { descripcion: 'Se crea el objetivo específico 1.', tipo: Enum_Tipo_Objetivo.especifico },
-            { descripcion: 'Se crea el objetivo específico 2.', tipo: Enum_Tipo_Objetivo.especifico },
-        ],
-    });
-};
+    // const proyectoCreado = await ProjectModel.create({
+    //     nombre: 'Proyecto Mision TIC',
+    //     fechaInicio: new Date('2021/12/24'),
+    //     fechaFin: new Date('2022/12/24'),
+    //     presupuesto: 120000,
+    //     lider: usuarioInicial._id,
+    //     objetivos: [
+    //         { descripcion: 'Se crea el objetivo general.', tipo: Enum_Tipo_Objetivo.general },
+    //         { descripcion: 'Se crea el objetivo específico 1.', tipo: Enum_Tipo_Objetivo.especifico },
+    //         { descripcion: 'Se crea el objetivo específico 2.', tipo: Enum_Tipo_Objetivo.especifico },
+    //     ],
+    // });
+// };
 
-    const consultaProyectoConObjetivos = async () => {
-        const proyectoCreado = await ProjectModel.find({ id: '618d5b22e4e2a99bddab693e' });
-        console.log('proyecto', proyectoCreado);
-    };
+//     const consultaProyectoConObjetivos = async () => {
+//         const proyectoCreado = await ProjectModel.find({ id: '618d5b22e4e2a99bddab693e' });
+//         console.log('proyecto', proyectoCreado);
+//     };
 };
 
 main();
