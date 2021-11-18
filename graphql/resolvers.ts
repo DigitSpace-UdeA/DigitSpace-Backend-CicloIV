@@ -1,3 +1,4 @@
+import { ProjectModel } from "../models/project";
 import { UserModel } from "../models/users";
 
 const resolvers = {
@@ -10,7 +11,14 @@ const resolvers = {
             const usuario = await UserModel.findOne();
             return usuario;
         },
-    },
+        Proyectos: async (parent, args) => {
+            const proyectos = await ProjectModel.find().populate("lider");
+            return proyectos;
+        },
+        Proyecto: async (parent, args) => {
+            const proyecto = await ProjectModel.findOne().populate("lider");
+            return proyecto;
+        }},
     
     Mutation: {
         crearUsuario: async (parent, args) => {
@@ -26,7 +34,6 @@ const resolvers = {
             if (Object.keys(args).includes('estado')) {
                 usuarioCreado.estado = args.estado;
             }
-
             return usuarioCreado;
         },
 
@@ -50,8 +57,21 @@ const resolvers = {
                 const usuarioEliminado = await UserModel.findOneAndDelete({ correo: args.correo });
             }
         },
+
+        crearProyecto: async (parent, args) => {
+            const proyectoCreado = await UserModel.create({
+                nombre: args.nombre,
+                presupuesto: args.presupuesto,
+                fechaInicial: args.fechaInicial,
+                fechaFinal: args.fechaFinal,
+                estado: args.estado,
+                fase: args.fase,
+                lider: args.lider,
+                objetivos: [{ descripcion: "Es un objetivo general.", tipo: "GENERAL" }],
+            });
+            return proyectoCreado;
+        },
     },
 };
 
 export { resolvers };
-

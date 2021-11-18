@@ -23,13 +23,13 @@ enum Enum_Fase_Proyecto {
 }
 
 enum Enum_Tipo_Objetivo{
-    general = "General",
-    especifico = "Específico",
+    GENERAL = "GENERAL",
+    ESPECIFICO = "ESPECIFICO",
 }
 
 enum Enum_Estado_Inscripcion {
-  aceptada = 'Aceptada',
-  rechazada = 'Rechazada',
+  ACEPTADA = 'ACEPTADA',
+  RECHAZADA = 'RECHAZADA',
 }
 
 export { Enum_Rol, Enum_Estado_Usuario, Enum_Estado_Proyecto, Enum_Fase_Proyecto, Enum_Tipo_Objetivo, Enum_Estado_Inscripcion };
