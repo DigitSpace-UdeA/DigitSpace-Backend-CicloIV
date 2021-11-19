@@ -10,11 +10,11 @@ const main = async () => {
 
     // Crear un Usuario
     // await UserModel.create({
-    //     nombre: "Ejemplo 1",
-    //     apellido: "Ejemplo 1",
-    //     identificacion: "1627384950",
-    //     correo: "prueba2@gmail.com",
-    //     rol: Enum_Rol.estudiante,
+    //     nombre: "Fredy",
+    //     apellido: "España Garcia",
+    //     identificacion: "1728394056",
+    //     correo: "prueba2tutor@gmail.com",
+    //     rol: Enum_Rol.administrador,
     // }).then((u) => {
     //     console.log("Usuario creado exitosamente: ", u);
     // }).catch((e) => {
@@ -45,10 +45,10 @@ const main = async () => {
     // Editar un Usuario
     
     // await UserModel.findOneAndUpdate(
-    //     { nombre: "Ejemplo 1" },
+    //     { nombre: "Fredy" },
     //     {
-    //         correo: "ejemplo1@prueba.com",
-    //         identificacion: "947573f4",
+    //         correo: "prueba2tutor2@gmail.com",
+    //         identificacion: "94757873f4",
     //         estado: Enum_Estado_Usuario.autorizado
     //     }
     // )
@@ -62,7 +62,7 @@ const main = async () => {
     // // Eliminar un Usuario
     
     // await UserModel.findOneAndDelete(
-    //     { nombre: "Paquita" }
+    //     { nombre: "Fredy" }
     // )
     //     .then((u) => {
     //     console.log("Usuario eliminado exitosamente: ", u);
