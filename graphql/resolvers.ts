@@ -59,7 +59,7 @@ const resolvers = {
         },
 
         crearProyecto: async (parent, args) => {
-            const proyectoCreado = await UserModel.create({
+            const proyectoCreado = await ProjectModel.create({
                 nombre: args.nombre,
                 presupuesto: args.presupuesto,
                 fechaInicial: args.fechaInicial,
@@ -67,7 +67,7 @@ const resolvers = {
                 estado: args.estado,
                 fase: args.fase,
                 lider: args.lider,
-                objetivos: [{ descripcion: "Es un objetivo general.", tipo: "GENERAL" }],
+                objetivos: args.objetivos,
             });
             return proyectoCreado;
         },

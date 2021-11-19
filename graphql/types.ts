@@ -50,7 +50,6 @@ const typeDefs = gql`
     }
 
     input crearObjetivo{
-        _id: ID
         descripcion: String!
         tipo: Enum_Tipo_Objetivo!
     }
