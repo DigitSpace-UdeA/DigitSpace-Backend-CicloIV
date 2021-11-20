@@ -1,9 +1,9 @@
 import conectarBD from "./db/db";
-import { UserModel } from "./models/users";
-import { Enum_Estado_Usuario, Enum_Rol, Enum_Tipo_Objetivo } from "./models/enum";
+import { UserModel } from "./models/Usuarios/usuario";
+import { Enum_Estado_Usuario, Enum_Rol, Enum_Tipo_Objetivo } from "./models/Enums/enum";
 import { ObjectId } from "mongoose";
-import { ProjectModel } from "./models/project";
-import { ObjectiveModel } from "./models/objetivo";
+import { ProjectModel } from "./models/Proyectos/proyecto";
+import { ObjectiveModel } from "./models/Objetivos/objetivo";
 
 const main = async () => {
     await conectarBD();
