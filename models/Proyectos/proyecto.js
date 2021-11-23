@@ -1,59 +1,68 @@
-import { Schema, model } from "mongoose";
-import { Enum_Estado_Proyecto, Enum_Fase_Proyecto } from "../Enums/enum";
-import { ObjectiveModel } from "../Objetivos/objetivo";
-import { UserModel } from "../Usuarios/usuario";
+import mongoose from "mongoose";
+import { UserModel } from "../Usuarios/usuario.js";
 
-interface Proyecto {
-    nombre: string;
-    presupuesto: number;
-    fechaInicial: Date;
-    fechaFinal: Date;
-    estadoProyecto: Enum_Estado_Proyecto;
-    faseProyecto: Enum_Fase_Proyecto;
-    lider: Schema.Types.ObjectId;
-    objetivos: [Schema.Types.ObjectId];
-}
+const { Schema, model } = mongoose;
 
-const projectSchema = new Schema<Proyecto>({
+// interface Proyecto {
+//     nombre: string;
+//     presupuesto: number;
+//     fechaInicial: Date;
+//     fechaFinal: Date;
+//     estadoProyecto: Enum_Estado_Proyecto;
+//     faseProyecto: Enum_Fase_Proyecto;
+//     lider: Schema.Types.ObjectId;
+//     objetivos: [Schema.Types.ObjectId];
+// }
+
+const projectSchema =
+  new Schema(
+  {
     nombre: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     presupuesto: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     fechaInicial: {
-        type: Date,
-        required: true,
+      type: Date,
+      required: true,
     },
     fechaFinal: {
-        type: Date,
-        required: true,
+      type: Date,
+      required: true,
     },
     estadoProyecto: {
-        type: String,
-        enum: Enum_Estado_Proyecto,
-        default: Enum_Estado_Proyecto.INACTIVO,
+      type: String,
+      enum: ["ACTIVO", "INACTIVO"],
+      default: "INACTIVO",
     },
     faseProyecto: {
-        type: String,
-        enum: Enum_Fase_Proyecto,
-        default: Enum_Fase_Proyecto.NULO,
+      type: String,
+      enum: ["INICIADO", "EN_DESARROLLO", "TERMINADO", "NULO"],
+      default: "NULO",
     },
     lider: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: UserModel,
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: UserModel,
     },
     objetivos: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: ObjectiveModel,
+      {
+        descripcion: {
+          type: String,
+          required: true,
         },
+        tipo: {
+          type: String,
+          enum: ["GENERAL", "ESPECIFICO"],
+          required: true,
+        },
+      },
     ],
-});
+  });
 
-const ProjectModel = model('Project', projectSchema, "Proyectos_Universidad");
+const ProjectModel = model("Project", projectSchema, "Proyectos_Universidad");
 
 export { ProjectModel };
