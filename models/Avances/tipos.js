@@ -22,6 +22,10 @@ const tiposAvances = gql`
             proyecto: String!
             creadoPor: String!
         ): Avance
+
+        filtrarAvance(
+            idProyecto: String!
+        ): [Avance]
     }
 `;
 
