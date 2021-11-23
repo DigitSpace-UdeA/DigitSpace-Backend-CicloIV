@@ -14,14 +14,14 @@ const resolversProyecto = {
     Mutation: {
         crearProyecto: async (parent, args) => {
             const proyectoCreado = await ProjectModel.create({
-                nombre: args.nombre,
-                estado: args.estado,
-                fase: args.fase,                
-                fechaInicial: args.fechaInicial,
-                fechaFinal: args.fechaFinal,
-                presupuesto: args.presupuesto,
-                lider: args.lider,
-                objetivos: args.objetivos,
+              nombre: args.nombre,
+              estadoProyecto: args.estadoProyecto,
+              fase: args.fase,
+              fechaInicial: args.fechaInicial,
+              fechaFinal: args.fechaFinal,
+              presupuesto: args.presupuesto,
+              lider: args.lider,
+              objetivos: args.objetivos,
             });
             return proyectoCreado;
         },

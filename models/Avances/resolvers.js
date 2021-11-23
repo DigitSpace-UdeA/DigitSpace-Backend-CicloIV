@@ -10,10 +10,10 @@ const resolverAvances = {
     Mutation: {
         crearAvance: async (parent, args) => {
             const avanceCreado = await AvanceModel.create({
-                fechaAvance: new Date(args.fechaAvance),
-                descripcion: args.descripcion,
-                proyecto: args.proyecto,
-                creadoPor: args.creadoPor,
+              fechaAvance: new Date(args.fechaAvance),
+              descripcion: args.descripcion,
+              proyecto: args.proyecto,
+              creadoPor: args.creadoPor,
             });
             return avanceCreado;
         },

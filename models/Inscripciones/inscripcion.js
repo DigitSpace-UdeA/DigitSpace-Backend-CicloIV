@@ -15,7 +15,7 @@ const { Schema, model } = mongoose;
 const inscripcionSchema =
   new Schema(
   {
-    estado: {
+    estadoAvance: {
       type: String,
       enum: ["ACEPTADA", "RECHAZADA", "PENDIENTE"],
       default: "PENDIENTE",

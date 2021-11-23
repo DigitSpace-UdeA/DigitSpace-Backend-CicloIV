@@ -38,6 +38,6 @@ const avanceSchema = new Schema({
     },
 });
 
-const AvanceModel = model("Avance", avanceSchema, "Avence_Proyectos");
+const AvanceModel = model("Avance", avanceSchema, "Avance_Proyectos");
 
 export { AvanceModel };
