@@ -3,11 +3,16 @@ import { ProjectModel } from "./proyecto.js";
 const resolversProyecto = {
     Query: {
         Proyectos: async (parent, args) => {
-            const proyectos = await ProjectModel.find().populate("lider");
+            const proyectos = await ProjectModel.find()
+              .populate("lider")
+              .populate("avances")
+              .populate("inscripciones");
             return proyectos;
         },
         Proyecto: async (parent, args) => {
-            const proyecto = await ProjectModel.findOne().populate("lider");
+            const proyecto = await ProjectModel.findOne()
+              .populate("lider")
+              .populate("avances");
             return proyecto;
         }},
     
@@ -16,7 +21,7 @@ const resolversProyecto = {
             const proyectoCreado = await ProjectModel.create({
               nombre: args.nombre,
               estadoProyecto: args.estadoProyecto,
-              fase: args.fase,
+              faseProyecto: args.faseProyecto,
               fechaInicial: args.fechaInicial,
               fechaFinal: args.fechaFinal,
               presupuesto: args.presupuesto,

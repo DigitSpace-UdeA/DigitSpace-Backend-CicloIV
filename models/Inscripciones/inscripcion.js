@@ -15,7 +15,7 @@ const { Schema, model } = mongoose;
 const inscripcionSchema =
   new Schema(
   {
-    estadoAvance: {
+    estadoInscripcion: {
       type: String,
       enum: ["ACEPTADA", "RECHAZADA", "PENDIENTE"],
       default: "PENDIENTE",
@@ -23,11 +23,11 @@ const inscripcionSchema =
     },
     fechaIngreso: {
       type: Date,
-      required: true,
+      required: false,
     },
     fechaEgreso: {
       type: Date,
-      required: true,
+      required: false,
     },
     proyecto: {
       type: Schema.Types.ObjectId,
@@ -41,6 +41,6 @@ const inscripcionSchema =
     },
   });
 
-const InscripcionModel = model("Inscripcion", inscripcionSchema);
+const InscripcionModel = model("Inscripcion", inscripcionSchema, "Inscripciones_Proyectos");
 
 export { InscripcionModel };

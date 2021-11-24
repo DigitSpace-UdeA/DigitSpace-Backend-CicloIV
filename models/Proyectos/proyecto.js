@@ -14,8 +14,7 @@ const { Schema, model } = mongoose;
 //     objetivos: [Schema.Types.ObjectId];
 // }
 
-const projectSchema =
-  new Schema(
+const projectSchema = new Schema(
   {
     nombre: {
       type: String,
@@ -61,7 +60,24 @@ const projectSchema =
         },
       },
     ],
-  });
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
+  
+projectSchema.virtual("avances", {
+  ref: "Avance",
+  localField: "_id",
+  foreignField: "proyecto",
+});
+
+projectSchema.virtual("inscripciones", {
+  ref: "Inscripcion",
+  localField: "_id",
+  foreignField: "proyecto",
+});
 
 const ProjectModel = model("Project", projectSchema, "Proyectos_Universidad");
 
