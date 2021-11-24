@@ -17,6 +17,14 @@ const resolverInscripciones = {
       });
       return inscripcionCreada;
     },
+
+    aprobarInscripcion: async (parent, args) => {
+      const inscripcionAprobada = await InscripcionModel.findByIdAndUpdate(args.id, {
+        estadoInscripcion: "ACEPTADO",
+        fechaIngreso: Date.now(),
+      });
+      return inscripcionAprobada;
+    },
   },
 };
 
