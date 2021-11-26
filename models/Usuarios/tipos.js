@@ -33,8 +33,7 @@ const tiposUsuarios = gql`
             apellido: String!
             identificacion: String!
             correo: String!
-            rol: Enum_Rol!
-            estado: Enum_Estado_Usuarios
+            estado: Enum_Estado_Usuarios!
         ): Usuario
     
         eliminarUsuario(
