@@ -3,7 +3,12 @@ import { AvanceModel } from "./avance.js";
 const resolverAvances = {
     Query: {
         Avances: async (parent, args) => {
-            const avances = await AvanceModel.find().populate("proyecto").populate("creadoPor");
+            const avances = await AvanceModel.find().populate({
+                path: "avances",
+                populate: {
+                    path: "creadoPor",
+                },
+            }).populate("lider");
             return avances;
         },
         filtrarAvance:  async (parent, args) => {

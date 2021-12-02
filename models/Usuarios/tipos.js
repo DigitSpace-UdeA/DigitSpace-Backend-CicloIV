@@ -25,6 +25,7 @@ const tiposUsuarios = gql`
             correo: String!            
             rol: Enum_Rol!
             estado: Enum_Estado_Usuarios
+            password: String!
         ): Usuario
 
         editarUsuario(

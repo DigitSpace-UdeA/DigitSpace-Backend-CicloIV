@@ -25,6 +25,10 @@ const userSchema =
         message: "El formato del correo no corresponde a lo habitual.",
       },
     },
+    password: {
+      type: String,
+      required: true,
+    },
     identificacion: {
       type: String,
       required: true,
