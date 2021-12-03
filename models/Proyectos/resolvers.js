@@ -14,7 +14,13 @@ const resolversProyecto = {
               .populate("lider")
               .populate("avances");
             return proyecto;
-        }},
+        },
+        Proyecto_Lider: async (parent, args) => {
+            const proyectoLiderado = await ProjectModel.find({lider: args.lider})
+            console.log("Proyectos Liderados:", proyectoLiderado)
+            return proyectoLiderado;
+        },
+      },
     
     Mutation: {
         crearProyecto: async (parent, args) => {
@@ -30,6 +36,57 @@ const resolversProyecto = {
             });
             return proyectoCreado;
         },
+        editarProyecto: async (parent, args) => {
+          if (args.campos.faseProyecto === "TERMINADO") {
+            args.campos.fechaFinal = Date.now().toISOString().split("T")[0];
+          }
+          const proyectoEditado = await ProjectModel.findByIdAndUpdate(
+              args._id,
+              {...args.campos},
+              { new: true }
+            );
+            return proyectoEditado;
+        },
+        crearObjetivo: async (parent, args) => {
+            const objetivoCreado = await ProjectModel.findByIdAndUpdate(
+              args.idProyecto,
+              {
+                $addToSet: {
+                  objetivos: { ...args.campos },
+                },
+              },
+              { new: true }
+            );
+            return objetivoCreado;
+        },
+        editarObjetivo: async (parent, args) => {
+            const objetivoEditado = await ProjectModel.findByIdAndUpdate(
+              args.idProyecto,
+              {
+                $set: {
+                  [`objetivos.${args.indexObjetivo}.descripcion`]:
+                    args.campos.descripcion,
+                  [`objetivos.${args.indexObjetivo}.tipo`]: args.campos.tipo,
+                },
+              },
+              { new: true }
+            );
+            return objetivoEditado;
+        },
+        eliminarObjetivo: async (parent, args) => {
+            const objetivoEliminado = await ProjectModel.findByIdAndUpdate(
+              {_id: args.idProyecto},
+              {
+                $pull: {
+                  objetivos: {
+                    _id: args.idObjetivo,
+                  },
+                },
+              },
+              { new: true }
+            );
+            return objetivoEliminado;
+        },        
     },
 };
 

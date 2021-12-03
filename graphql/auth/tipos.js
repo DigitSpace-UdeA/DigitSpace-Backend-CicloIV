@@ -3,7 +3,7 @@ import { gql } from "apollo-server-express";
 const tiposAutenticacion = gql`
   type Token {
     token: String
-    errot: String
+    error: String
   }
 
   type Mutation {

@@ -1,28 +1,47 @@
 import { UserModel } from "./usuario.js";
+import bcrypt from 'bcrypt';
 
 const resolversUsuarios = {
     Query: {
         Usuarios: async (parent, args, context) => {
-            console.log('context', context);
-            if (context.userData.rol === 'ADMINISTRADOR') {
-                const usuarios = await UserModel.find();
+            // if (context.userData.rol === 'ADMINISTRADOR') {
+            const usuarios = await UserModel.find().populate([
+              {
+                path: "inscripciones",
+                populate: {
+                  path: "proyecto",
+                  populate: [{ path: "lider" }, { path: "avances" }],
+                },
+              },
+              {
+                path: "proyectosLiderados",
+              },
+            ]);
                 return usuarios;
-            }
-            return null;
+            // }
+            // return null;
         },
         Usuario: async (parent, args) => {
             const usuario = await UserModel.findOne();
             return usuario;
-        }},
+        },
+        Usuarios_Rol: async (parent, args) => {
+            const usuarioRol = await UserModel.find({rol: args.rol});
+            return usuarioRol;
+        }
+    },
     
     Mutation: {
         crearUsuario: async (parent, args) => {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(args.password, salt);
             const usuarioCreado = await UserModel.create({
-                nombre: args.nombre,
-                apellido: args.apellido,
-                identificacion: args.identificacion,
-                correo: args.correo,
-                rol: args.rol,
+              nombre: args.nombre,
+              apellido: args.apellido,
+              identificacion: args.identificacion,
+              correo: args.correo,
+              rol: args.rol,
+              password: hashedPassword,
             });
 
             // Permite asignarle el estado al usuario al momento de crearlo, si se quiere, dado que por default es Pendiente.
