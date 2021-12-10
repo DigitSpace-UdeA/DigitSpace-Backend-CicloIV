@@ -2,15 +2,6 @@ import mongoose from "mongoose";
 
 const { Schema, model } = mongoose;
 
-// interface User {
-//     correo: string;
-//     identificacion: string;
-//     nombre: string;
-//     apellido: string;
-//     rol: Enum_Rol;
-//     estado: Enum_Estado_Usuario;
-// }
-
 const userSchema =
   new Schema(
   {
