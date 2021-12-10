@@ -36,17 +36,36 @@ const resolversProyecto = {
             });
             return proyectoCreado;
         },
+
         editarProyecto: async (parent, args) => {
-          if (args.campos.faseProyecto === "TERMINADO") {
-            args.campos.fechaFinal = Date.now().toISOString().split("T")[0];
-          }
+          console.log("args", args)
           const proyectoEditado = await ProjectModel.findByIdAndUpdate(
-              args._id,
-              {...args.campos},
-              { new: true }
-            );
-            return proyectoEditado;
+            args._id,
+            { ...args.campos },
+            { new: true }
+          );
+          console.log("cnsol", proyectoEditado)
+          return proyectoEditado;
         },
+
+
+
+
+
+        // editarProyecto: async (parent, args) => {
+        //   // var now = new Date();
+        //   // var isoString = now.toISOString()
+        //   if (args.campos.faseProyecto === "TERMINADO") {
+        //     args.campos.fechaFinal = new Date().toISOString.split("T")[0];
+        //   }
+        //   const proyectoEditado = await ProjectModel.findByIdAndUpdate(
+        //       args._id,
+        //       {...args.campos},
+        //       { new: true }
+        //     );
+        //     return proyectoEditado;
+        // },
+
         crearObjetivo: async (parent, args) => {
             const objetivoCreado = await ProjectModel.findByIdAndUpdate(
               args.idProyecto,
