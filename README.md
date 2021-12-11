@@ -3,3 +3,7 @@ Proyecto del grupo DigitSpace, programa Mision TIC 2022 de MinTIC y Universidad 
 Integrantes:
 
 - David Andrés González Medina
+- Daniel Florez-Orrego
+- Yesica Villamil
+- Katerin Barrera
+- Kevin Giraldo
