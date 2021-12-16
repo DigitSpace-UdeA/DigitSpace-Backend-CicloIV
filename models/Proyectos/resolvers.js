@@ -35,9 +35,6 @@ const resolversProyecto = {
               objetivos: args.objetivos,
             });
             return proyectoCreado;
-
-
-            
         },
 
         editarProyecto: async (parent, args) => {
