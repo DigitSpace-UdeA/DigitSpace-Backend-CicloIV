@@ -1,6 +1,22 @@
+import { InscripcionModel } from "../Inscripciones/inscripcion.js";
+import { UserModel } from "../Usuarios/usuario.js";
 import { ProjectModel } from "./proyecto.js";
 
 const resolversProyecto = {
+  Proyecto: {
+    lider: async (parent, args, context) => {
+      const usr = await UserModel.findOne({
+        _id: parent.lider.toString(),
+      });
+      return usr;
+    },
+    inscripciones: async (parent, args, context) => {
+      const inscripciones = await InscripcionModel.find({
+        proyecto: parent._id,
+      });
+      return inscripciones;
+    },
+  },
     Query: {
         Proyectos: async (parent, args) => {
             const proyectos = await ProjectModel.find()
@@ -47,10 +63,6 @@ const resolversProyecto = {
           console.log("cnsol", proyectoEditado)
           return proyectoEditado;
         },
-
-
-
-
 
         // editarProyecto: async (parent, args) => {
         //   // var now = new Date();

@@ -75,15 +75,3 @@ const tiposProyecto = gql`
 `;
 
 export { tiposProyecto };
-
-// type Mutation {
-//   crearProyecto(
-//     nombre: String!
-//     presupuesto: Float!
-//     fechaInicial: Date!
-//     fechaFinal: Date!
-//     estadoProyecto: Enum_Estado_Proyecto!
-//     faseProyecto: Enum_Fase_Proyecto!
-//     lider: String!
-//     objetivos: [crearObjetivo]
-//   ): Proyecto
